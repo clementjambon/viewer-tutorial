@@ -1,5 +1,7 @@
 # "How to build a viewer for (almost) anything" tutorial 🖥️🚀
 
+⚠️ Please do not look at the [solutions](https://github.com/clementjambon/viewer-tutorial/tree/main/solutions) before we go through the tutorial together!
+
 ## Installation
 
 Start by cloning this repo
