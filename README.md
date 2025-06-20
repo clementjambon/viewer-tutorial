@@ -2,7 +2,7 @@
 
 ## Installation
 
-Start by creating a conda environment and installing all the dependencies
+Start by creating a conda environment and installing all the dependencies:
 ```bash
 conda create -n viewer-tutorial python=3.11
 conda activate viewer-tutorial
@@ -11,11 +11,28 @@ pip install -r requirements.txt
 
 In the background, this will install a [custom fork](https://github.com/clementjambon/ps-py-plus) of Polyscope and [ps-utils](https://github.com/clementjambon/ps-utils), a library with a ton of additional utils.
 
-## 00: A bunny!
+To test your installation, please run:
+```bash
+python test_installation.py
+```
 
-To check that everything is running properly, run the following minimal example:
+If a window opens and stays open, then you have successfully installed everything. Congrats! 🥳
+
+## 00: A bunny! 🐰
+
+To render our favorite bunny, let's try:
 ```bash
 python 00_bunny.py
 ```
 
 ## 01: Laplacian smoothing 🏄
+
+TODO
+
+## 02: Cornell Box 📦
+
+TODO
+
+## 03: Springy Simulation 🔗
+
+TODO
