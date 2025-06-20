@@ -50,14 +50,22 @@ class SpringySimulation(BaseViewer):
         )
         reinitialize_simulation |= psim.IsItemDeactivatedAfterEdit()
 
+        if reinitialize_simulation:
+            self.init_simulation(
+                coords=self.voxel_set.coords,
+                selection_mask=self.voxel_set.selection_mask,
+            )
+
         # ========================
         # VOXELSET
         # ========================
 
-        reinitialize_simulation |= self.voxel_set.gui()
-
-        if reinitialize_simulation:
-            self.init_simulation(self.voxel_set.coords, self.voxel_set.selection_mask)
+        if self.voxel_set.gui():
+            self.init_simulation(
+                coords=self.voxel_set.coords,
+                selection_mask=self.voxel_set.selection_mask,
+                keep_voxelset=True,
+            )
 
     def step(self):
         self.simulation_step()
@@ -75,20 +83,23 @@ class SpringySimulation(BaseViewer):
         self.ps_edges = ps.register_curve_network("springs", self.sim.x, self.sim.edges)
 
     def init_simulation(
-        self, grid_coords: np.ndarray, selection_mask: np.ndarray | None = None
+        self,
+        coords: np.ndarray,
+        selection_mask: np.ndarray | None = None,
+        keep_voxelset: bool = False,
     ):
         # Slightly offset initial positions to create jiggly patterns
-        init_pos = grid_coords.copy().astype(float)
+        init_pos = coords.copy().astype(float)
         init_pos[:, 0] *= 1.2
 
         # Pin the top-most elements (for initialization only)
         if selection_mask is None:
-            selection_mask = grid_coords[:, 1] == grid_coords[:, 1].max()
+            selection_mask = coords[:, 1] == coords[:, 1].max()
         fixed_ids = np.nonzero(selection_mask)[0]
 
         # Create the simulation
         self.sim = VoxelSpringSimulator(
-            coords=grid_coords,
+            coords=coords,
             init_positions=init_pos,
             stiffness=self.stiffness,
             mass=1.0,
@@ -98,15 +109,16 @@ class SpringySimulation(BaseViewer):
         )
 
         # This creates a selectable voxel set, useful to manually select voxels
-        self.voxel_set = VoxelSet(
-            coords=grid_coords,
-            voxel_res=VOXEL_RES,
-            bbox_min=0,
-            bbox_max=VOXEL_RES,
-            selection_mask=selection_mask,
-            offset=np.array([1.5 * VOXEL_RES, 0.0, 0.0]),
-            name="Boundary Conditions",
-        )
+        if not keep_voxelset:
+            self.voxel_set = VoxelSet(
+                coords=coords,
+                voxel_res=VOXEL_RES,
+                bbox_min=0,
+                bbox_max=VOXEL_RES,
+                selection_mask=selection_mask,
+                offset=np.array([1.5 * VOXEL_RES, 0.0, 0.0]),
+                name="Boundary Conditions",
+            )
 
     def load_mesh(self, input_path: str):
         # Load the new grid coordinates
