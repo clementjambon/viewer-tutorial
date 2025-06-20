@@ -9,7 +9,7 @@ conda activate viewer-tutorial
 pip install -r requirements.txt
 ```
 
-In the background, this will install a [custom fork](git@github.com:clementjambon/ps-py-plus.git) of Polyscope and [ps-utils](https://github.com/clementjambon/ps-utils), a library with a ton of additional utils.
+In the background, this will install a [custom fork](https://github.com/clementjambon/ps-py-plus) of Polyscope and [ps-utils](https://github.com/clementjambon/ps-utils), a library with a ton of additional utils.
 
 ## 00: A bunny!
 

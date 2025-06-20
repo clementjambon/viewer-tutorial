@@ -14,7 +14,7 @@ BASIC_MESH_EXTENSIONS = {".ply", ".obj", ".stl"}
 
 class LaplacianSmoothing(BaseViewer):
     """
-    Demo viewer showcasing drag-n-drop and image thumbnails
+    Laplacian Smoothing with mesh drag-n-drops
     """
 
     def post_init(self, **kwargs):

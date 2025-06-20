@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-import drjit as dr
 import mitsuba as mi
 import numpy as np
 

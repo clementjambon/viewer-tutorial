@@ -7,7 +7,7 @@ import polyscope as ps
 import polyscope.imgui as psim
 
 from ps_utils.viewer.base_viewer import BaseViewer
-from utils.buffer import Buffer, pad_alpha
+from utils.buffer import Buffer
 
 SCENE_PATH = "data/cbox.xml"
 RENDER_SIZE = 512
