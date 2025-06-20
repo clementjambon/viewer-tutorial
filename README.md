@@ -2,7 +2,13 @@
 
 ## Installation
 
-Start by creating a conda environment and installing all the dependencies:
+Start by cloning this repo
+```bash
+git clone https://github.com/clementjambon/viewer-tutorial.git
+cd viewer-tutorial
+```
+
+Then, create a conda environment and install all the dependencies:
 ```bash
 conda create -n viewer-tutorial python=3.11
 conda activate viewer-tutorial
