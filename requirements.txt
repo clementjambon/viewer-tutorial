@@ -1,0 +1,8 @@
+Pillow
+trimesh
+drjit
+mitsuba
+gpytoolbox
+git+https://github.com/clementjambon/ps-py-plus.git
+git+https://github.com/clementjambon/deepdish.git
+git+https://github.com/clementjambon/ps-utils.git
