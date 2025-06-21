@@ -56,7 +56,7 @@ class LaplacianSmoothing(BaseViewer):
         # Apply one step of Laplacian smoothing
         self.vertices -= self.step_size * laplacian @ self.vertices
 
-        # If use Taubin smoothing, repeat the operation
+        # For Taubin smoothing, repeat the operation but in the opposite direction
         if self.taubin:
             laplacian = gpytoolbox.cotangent_laplacian(self.vertices, self.faces)
             self.vertices += (

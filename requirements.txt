@@ -1,5 +1,6 @@
 Pillow
 trimesh
+rtree
 drjit
 mitsuba
 gpytoolbox
