@@ -8,7 +8,7 @@
   - [Installation](#installation)
   - [00: A bunny! 🐰](#00-a-bunny-)
   - [01: Slicing SDFs 🔪](#01-slicing-sdfs-)
-  - [02: Laplacian smoothing 🏄](#02-laplacian-smoothing-)
+  - [02: Laplacian Smoothing 🏄](#02-laplacian-smoothing-)
   - [03: Cornell Box 📦](#03-cornell-box-)
   - [04: Springy Simulation 🔗](#04-springy-simulation-)
   - [05: Neural Fields 🧠](#05-neural-fields-)
@@ -56,7 +56,7 @@ Objectives:
 * Play with isolines
 * Add a slicer
 
-## 02: Laplacian smoothing 🏄
+## 02: Laplacian Smoothing 🏄
 
 Time to start our first viewer by using the [BaseViewer](https://github.com/clementjambon/ps-utils/blob/main/src/ps_utils/viewer/base_viewer.py) template from [ps-utils](https://github.com/clementjambon/ps-utils).
 
