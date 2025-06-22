@@ -16,9 +16,10 @@ from ps_utils.ui.buttons import state_button
 from ps_utils.ui.image_utils import Thumbnail
 from utils.mlp_field import MlpField, normalized_pixel_grid
 
+# DEFAULT VARIABLES
 LR = 5e-3
 NUM_ITERATIONS = 2500
-WINDOW_SIZE = 900
+WINDOW_SIZE = 768
 
 
 class NeuralField(BaseViewer):
@@ -60,8 +61,13 @@ class NeuralField(BaseViewer):
         )  # Convert to Tensor
         self.height, self.width = self.image.shape[:2]
 
-        # Create a GUI thumbnail
-        self.thumbnail = Thumbnail.from_PIL(image)
+        # =============================
+        # TODO: Create a GUI thumbnail
+        # =============================
+
+        # .....
+
+        # =============================
 
         # Initialize model and optimizer
         self.model = MlpField(
@@ -92,6 +98,8 @@ class NeuralField(BaseViewer):
     def step(self):
         if self.optimizing:
             self.optimizing, loss_dict = self.training_step()
+            # Collect the losses returned by the training step
+            # They will be displayed as plot in the GUI
             for k, v in loss_dict.items():
                 self.losses[k].append(v)
 
@@ -106,23 +114,21 @@ class NeuralField(BaseViewer):
         _, self.optimizing = state_button(self.optimizing, "Stop", "Train")
 
         psim.SameLine()
-        # KEY_HANDLER automatically checks for key inputs.
-        if psim.Button("Reset##training_viewer") or KEY_HANDLER("r"):
+        # ===============================================
+        # TODO: Add a `r` key shortcut to reset training
+        # ===============================================
+        if psim.Button("Reset##training_viewer"):
             self.reset()
 
         psim.SeparatorText("Losses")
-
-        for k, v in self.losses.items():
-            psim.PlotLines(
-                f"{k}",
-                v,
-                graph_size=(300, 100),
-                overlay_text=f"{k}",
-            )
+        # =============================
+        # TODO: Plot losses
+        # =============================
 
         psim.SeparatorText("Target Image")
-
-        self.thumbnail.gui()
+        # =======================================
+        # TODO: Display the current target image
+        # =======================================
 
     @torch.no_grad()
     def draw(self):

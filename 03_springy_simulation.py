@@ -63,12 +63,9 @@ class SpringySimulation(BaseViewer):
         # VOXELSET
         # ========================
 
-        if self.voxel_set.gui():
-            self.init_simulation(
-                coords=self.voxel_set.coords,
-                selection_mask=self.voxel_set.selection_mask,
-                keep_voxelset=True,
-            )
+        # ==================================================================
+        # TODO: call the VoxelSet gui and reset the simulation when updated
+        # ==================================================================
 
     def step(self):
         # Step the simulation
@@ -79,11 +76,11 @@ class SpringySimulation(BaseViewer):
         self.sim.step(self.dt)
 
         # Update the point cloud and edges
-        self.ps_pointcloud = ps.register_point_cloud(
-            "points",
-            self.sim.x,
-        )
-        self.ps_edges = ps.register_curve_network("springs", self.sim.x, self.sim.edges)
+        # ============================================================
+        # TODO: Update the Polyscope point cloud and edges
+        # HINT: you can access point positions with `self.sim.x`
+        # HINT: you can access edge indices with `self.sim.edges`
+        # ============================================================
 
     def init_simulation(
         self,
@@ -114,17 +111,9 @@ class SpringySimulation(BaseViewer):
             fixed=fixed_ids,
         )
 
-        # This creates a selectable voxel set, useful to manually select voxels
-        if not keep_voxelset:
-            self.voxel_set = VoxelSet(
-                coords=coords,
-                voxel_res=VOXEL_RES,
-                bbox_min=0,
-                bbox_max=VOXEL_RES,
-                selection_mask=selection_mask,
-                offset=np.array([1.5 * VOXEL_RES, 0.0, 0.0]),
-                name="Boundary Conditions",
-            )
+        # ========================================================================
+        # TODO: Create a VoxelSet to control the simulation (boundary conditions)
+        # ========================================================================
 
     def load_mesh(self, input_path: str):
         """
