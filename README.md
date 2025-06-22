@@ -3,6 +3,16 @@
 > [!WARNING]
 > Please do not look at the [solutions](https://github.com/clementjambon/viewer-tutorial/tree/main/solutions) before we go through the tutorial together!
 
+## Table of Contents
+
+  - [Installation](#installation)
+  - [00: A bunny! 🐰](#00-a-bunny-)
+  - [01: Slicing SDFs 🔪](#01-slicing-sdfs-)
+  - [02: Laplacian smoothing 🏄](#02-laplacian-smoothing-)
+  - [03: Cornell Box 📦](#03-cornell-box-)
+  - [04: Springy Simulation 🔗](#04-springy-simulation-)
+  - [05: Neural Fields 🧠](#05-neural-fields-)
+
 ## Installation
 
 Start by cloning this repo
