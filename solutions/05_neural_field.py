@@ -76,7 +76,7 @@ class NeuralField(BaseViewer):
     def init_render_buffer(self):
         """
         Placeholder code to initialize a Polyscope render buffer.
-        Same as 02_cornell_box.
+        Same as 03_cornell_box.
         """
 
         self.render_buffer_quantity = ps.add_raw_color_alpha_render_image_quantity(
