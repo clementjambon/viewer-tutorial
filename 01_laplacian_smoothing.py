@@ -7,6 +7,7 @@ import gpytoolbox
 from ps_utils.viewer.base_viewer import BaseViewer
 from ps_utils.ui.save_utils import check_extension
 from ps_utils.ui.buttons import state_button
+from ps_utils.ui.sliders import exp_slider
 
 BASIC_MESH_EXTENSIONS = {".ply", ".obj", ".stl"}
 
@@ -33,17 +34,10 @@ class LaplacianSmoothing(BaseViewer):
 
         if self.vertices is not None and self.faces is not None:
 
-            # Buttons
-            _, self.smooth = state_button(self.smooth, "Stop", "Smooth")
-            psim.SameLine()
-            if psim.Button("Step"):
-                self.smoothing_step()
-
-            # Smoothing parameters
-            _, self.step_size = psim.SliderFloat(
-                "Step size", self.step_size, v_min=0.01, v_max=1.0
-            )
-            _, self.taubin = psim.Checkbox("Taubin smoothing", self.taubin)
+            # ============================================================
+            # TODO: Add buttons for control and sliders for parameters
+            # ============================================================
+            pass
 
     def step(self):
         # If smoothing is enabled, smooth every frame
@@ -53,7 +47,7 @@ class LaplacianSmoothing(BaseViewer):
     def smoothing_step(self):
         """
         Performs one step of Laplacian smoothing.
-        BONUS: Implement Taubin smoothing (https://dl.acm.org/doi/10.1145/218380.218473)
+        BONUS: Taubin smoothing (https://dl.acm.org/doi/10.1145/218380.218473)
         """
         assert self.vertices is not None
         assert self.faces is not None
@@ -71,21 +65,21 @@ class LaplacianSmoothing(BaseViewer):
                 self.taubin_ratio * self.step_size * laplacian @ self.vertices
             )
 
-        # Update the mesh
-        # NOTE: since a `mesh` with the same name was already created below, it will automatically be overwritten!
-        self.ps_mesh = ps.register_surface_mesh("mesh", self.vertices, self.faces)
+        # ============================================================
+        # TODO: Update the Polyscope mesh
+        # ============================================================
 
     def load_mesh(self, input_path: str):
         """
         Loads a mesh with Trimesh and display it with Polyscope
         """
+
         # Don't forget to stop smoothing if it was running
         self.smooth = False
-        # Load mesh with Trimesh
-        mesh = trimesh.load(input_path)
-        self.vertices, self.faces = mesh.vertices, mesh.faces
-        # Display it with Polyscope
-        self.ps_mesh = ps.register_surface_mesh("mesh", self.vertices, self.faces)
+
+        # ============================================================
+        # TODO: Load a mesh with Trimesh and display it with Polyscope
+        # ============================================================
 
     def ps_drop_callback(self, input_path: str):
         """

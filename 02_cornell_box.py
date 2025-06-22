@@ -65,25 +65,16 @@ class CornellBox(BaseViewer):
         self.render_buffer = ps.get_quantity_buffer("render_buffer", "colors")
 
     def gui(self):
+
         # Just calling super to get FPS
         super().gui()
 
-        psim.PushItemWidth(150)
         update = False
-        _, self.left_color = psim.ColorPicker3(
-            "Left color",
-            self.left_color,
-            COLOR_PICKER_FLAGS,
-        )
-        update |= psim.IsItemDeactivatedAfterEdit()
-        psim.SameLine()
-        _, self.right_color = psim.ColorPicker3(
-            "Right color",
-            self.right_color,
-            COLOR_PICKER_FLAGS,
-        )
-        update |= psim.IsItemDeactivatedAfterEdit()
-        psim.PopItemWidth()
+
+        # =================================================================
+        # TODO: Add color pickers to control `left_color` and `right_color`
+        # NOTE: It's better to update the scen after edits are complete
+        # =================================================================
 
         if update:
             self.update_scene()
@@ -94,15 +85,9 @@ class CornellBox(BaseViewer):
         Accumulates the new samples in a buffer.
         Passes the rendered image to the Polyscope render buffer.
         """
-        # Render one frame
-        image = mi.render(self.scene, spp=1, seed=self.buffer.count)
-        # Add the corresponding image to the accumulation buffer
-        self.buffer.add_frame(image)
-        # Get the current accumulated image and tone-map with (`** (1.0 / 2.2)`)
-        rendered_image = self.buffer.get_rgba() ** (1.0 / 2.2)
-        # Update the Polyscope render buffer with it
-        # NOTE: when using `update_data_from_host`, Polyscope expects (H*W,4) sizes
-        self.render_buffer.update_data_from_host(rendered_image.reshape(-1, 4))
+        # =====
+        # TODO
+        # =====
 
     # ======
     # SCENE
